@@ -2,7 +2,7 @@
 
   <h2>Lista Prodotti</h2>
 
-  <button class="btn btn-primary mb-3">
+  <button class="btn btn-primary mb-3" >
     Nuovo Prodotto
   </button>
 
@@ -20,7 +20,7 @@
 
     <tbody>
 
-      <tr *ngFor="let product of products">
+      <tr *ngFor="let product of products()">
 
         <td>{{ product.id }}</td>
         <td>{{ product.descrizione }}</td>
@@ -32,7 +32,7 @@
             Modifica
           </button>
 
-          <button class="btn btn-danger btn-sm">
+          <button class="btn btn-danger btn-sm" (click)="deleteById(product.id)">
             Elimina
           </button>
         </td>
