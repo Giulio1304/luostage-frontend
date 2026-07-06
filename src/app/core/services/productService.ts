@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Product } from '../core/models/product';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
 
-private url = "http://localhost:8082/luostage/prodapi/product"
+private url = "http://localhost:8082/luostage/prodApi/product"
 
 private httpClient = inject(HttpClient);
 
