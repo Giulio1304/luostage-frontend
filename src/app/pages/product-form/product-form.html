@@ -1,0 +1,18 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="descrizione">Descrizione</label>
+        <input type="text" formControlName="descrizione" />
+    </div>
+    <div>
+        <label for="quantita">Quantita</label>
+        <input type="number" formControlName="quantita" />
+    </div>
+    <div>
+        <label for="prezzo">Prezzo</label>
+        <input type="number" formControlName="prezzo" />
+    </div>
+    <div class="mt-5">
+        <button type="submit">Registra Prodotto</button>
+    </div>
+
+</form>
