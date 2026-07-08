@@ -1,7 +1,8 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Product } from '../../core/models/product';
 import { ProductService } from '../../core/services/productService';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -16,6 +17,8 @@ export class ProductList implements OnInit{
   constructor(private productService: ProductService){
 
   }
+
+  protected router = inject(Router);
 
   ngOnInit(): void {
     this.productService.getAllProds()

@@ -28,7 +28,7 @@
         <td>{{ product.prezzo }} €</td>
 
         <td>
-          <button class="btn btn-warning btn-sm me-2">
+          <button class="btn btn-warning btn-sm me-2" (click)="router.navigate(['product/update', product.id])">
             Modifica
           </button>
 
