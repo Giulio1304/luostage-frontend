@@ -1,18 +1,32 @@
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <div>
-        <label for="descrizione">Descrizione</label>
-        <input type="text" formControlName="descrizione" />
-    </div>
-    <div>
-        <label for="quantita">Quantita</label>
-        <input type="number" formControlName="quantita" />
-    </div>
-    <div>
-        <label for="prezzo">Prezzo</label>
-        <input type="number" formControlName="prezzo" />
-    </div>
-    <div class="mt-5">
-        <button type="submit">Registra Prodotto</button>
-    </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+        <h2>Inserimento Prodotto</h2>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
 
-</form>
+        <div class="mb-3">
+          <label for="descrizione" class="form-label">Descrizione</label>
+          <input type="text" formControlName="descrizione" id="descrizione" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label for="quantita" class="form-label">Quantità</label>
+          <input type="number" formControlName="quantita" id="quantita" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+          <label for="prezzo" class="form-label">Prezzo</label>
+          <input type="number" formControlName="prezzo" id="prezzo" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registra Prodotto</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+ 
