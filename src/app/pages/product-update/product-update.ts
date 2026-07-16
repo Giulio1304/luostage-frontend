@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../core/services/productService';
 import { Product } from '../../core/models/product';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
@@ -18,11 +18,22 @@ export class ProductUpdate implements OnInit{
   private route = inject(ActivatedRoute); // rotta attiva per leggere l'id dall'url
   private service = inject(ProductService);
   private router = inject (Router);
+  private formBuilder = inject (FormBuilder); 
 
-
+  productForm!: FormGroup
   product = signal <Product | null>(null); // null perchè può esserci come no
   error : string | null = null;
+
+
+  
+
+
   ngOnInit(): void { // lifecycle hook
+    this.productForm = this.formBuilder.nonNullable.group({
+    descrizione: ["", [Validators.required]],
+    quantita: [1, [Validators.required,Validators.min(1)]],
+    prezzo : [0, [Validators.required,Validators.min(0.01)]]  
+  })
     const id = Number(this.route.snapshot.paramMap.get("id")); //snapshot dei parametri fino a quel momento, paramap per i parametri presenti nell'URL (id)
 
     this.service.getById(id).subscribe({ // il service prende l'id e "aspetta" che i dati del product arrivino
@@ -45,15 +56,14 @@ export class ProductUpdate implements OnInit{
    
   }
   // reactive forms 
-  productForm = new FormGroup({
-    descrizione: new FormControl('',{nonNullable : true}), // vado a specificare che il campo non sarà MAI null
-    quantita: new FormControl(0,{nonNullable : true}),
-    prezzo: new FormControl(0,{nonNullable : true})
-  })
+
 
   
   // metodo collegato all'html
   onSubmit(){
+    if (this.productForm.invalid){
+      this.productForm.markAllAsTouched();
+    }
     const id = Number(this.route.snapshot.paramMap.get("id")); // prendo id dall'url  (come fatto in ngOnInit)
     const productToUpdate : Product = { 
     id: id,                     // si prende l'id dato che non l'ho messo nel form group sennò l'utente è in grado di modificare anche l'id

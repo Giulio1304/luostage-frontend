@@ -20,7 +20,7 @@ export class ProductForm implements OnInit {
   ngOnInit(){
    this.productForm = this.formBuilder.group({
     descrizione: ['', [Validators.required]],
-    quantita: [0, [Validators.required, Validators.min(0)]],
+    quantita: [1, [Validators.required, Validators.min(1)]],
     prezzo: [null, [Validators.required, Validators.min(0.01)]]
    })
   }

@@ -9,16 +9,32 @@
         <div class="mb-3">
           <label for="descrizione" class="form-label">Descrizione</label>
           <input type="text" formControlName="descrizione" id="descrizione" class="form-control" />
+          <div class="text-danger mt-1" *ngIf="productForm.get('descrizione')?.touched && 
+           productForm.get('descrizione')?.hasError('required')">
+            La descrizione è obbligatoria!
+          </div>
         </div>
 
         <div class="mb-3">
           <label for="quantita" class="form-label">Quantità</label>
           <input type="number" formControlName="quantita" id="quantita" class="form-control" />
+         <div class="text-danger mt-1" *ngIf="productForm.get('quantita')?.hasError('required')"> 
+            La quantità è obbligatoria!
+           </div>
+           <div class="text-danger mt-1" *ngIf="productForm.get('quantita')?.hasError('min') "> 
+            La quantità non può essere negativa!
+           </div>
         </div>
 
         <div class="mb-3">
           <label for="prezzo" class="form-label">Prezzo</label>
           <input type="number" formControlName="prezzo" id="prezzo" class="form-control" />
+          <div class="text-danger mt-1" *ngIf="productForm.get('prezzo')?.touched && productForm.get('prezzo')?.hasError('required') "> 
+            Il prezzo è obbligatorio!
+           </div>
+           <div class="text-danger mt-1" *ngIf="productForm.get('prezzo')?.hasError('min') "> 
+            Il prezzo deve essere maggiore di zero!
+           </div>
         </div>
 
         <button type="submit" class="btn btn-primary">Aggiorna</button>

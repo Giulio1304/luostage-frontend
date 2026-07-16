@@ -27,7 +27,7 @@
         <div class="mb-3">
           <label for="prezzo" class="form-label">Prezzo</label>
           <input type="number" formControlName="prezzo" id="prezzo" class="form-control" />
-          <div class="text-danger mt-1" *ngIf="productForm.get('prezzo')?.hasError('required') "> 
+          <div class="text-danger mt-1" *ngIf="productForm.get('prezzo')?.touched && productForm.get('prezzo')?.hasError('required') "> 
             Il prezzo è obbligatorio!
            </div>
            <div class="text-danger mt-1" *ngIf="productForm.get('prezzo')?.hasError('min') "> 
